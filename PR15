@@ -1,0 +1,119 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Recommendation App</title>
+    <style>
+        body {
+            background: #171329;
+            color: white;
+            font-family: Arial;
+            text-align: center;
+            padding: 40px 15px;
+        }
+
+        .box {
+            background: #292142;
+            padding: 25px;
+            border-radius: 15px;
+            max-width: 400px;
+            margin: auto;
+        }
+
+        h1 { color: #d5aaff; }
+
+        select, button {
+            padding: 12px;
+            margin: 10px;
+            border-radius: 8px;
+            border: none;
+            font-size: 16px;
+        }
+
+        button {
+            background: #bb86fc;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        #result {
+            margin-top: 25px;
+            background: #3b2c58;
+            padding: 20px;
+            border-radius: 12px;
+            display: none;
+        }
+
+        #emoji { font-size: 60px; }
+    </style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>🎬 CineMatch</h1>
+    <p>Find a movie for your mood!</p>
+
+    <select id="genre">
+        <option value="Comedy">😂 Comedy</option>
+        <option value="Action">💥 Action</option>
+        <option value="Romance">❤️ Romance</option>
+        <option value="Sci-Fi">🚀 Sci-Fi</option>
+    </select>
+
+    <br>
+
+    <button onclick="recommendMovie()">
+        Recommend a Movie 🍿
+    </button>
+
+    <div id="result">
+        <div id="emoji"></div>
+        <h2 id="name"></h2>
+        <p id="category"></p>
+        <p id="rating"></p>
+    </div>
+</div>
+
+<script>
+const movies = {
+    Comedy: [
+        {name: "Home Alone", emoji: "🏠", rating: "7.7/10"},
+        {name: "The Hangover", emoji: "😂", rating: "7.7/10"}
+    ],
+
+    Action: [
+        {name: "The Dark Knight", emoji: "🦇", rating: "9.0/10"},
+        {name: "Avengers: Endgame", emoji: "🦸", rating: "8.4/10"}
+    ],
+
+    Romance: [
+        {name: "The Notebook", emoji: "❤️", rating: "7.8/10"},
+        {name: "La La Land", emoji: "💌", rating: "8.0/10"}
+    ],
+
+    "Sci-Fi": [
+        {name: "Interstellar", emoji: "🚀", rating: "8.7/10"},
+        {name: "Inception", emoji: "🌀", rating: "8.8/10"}
+    ]
+};
+
+function recommendMovie() {
+    const genre = document.getElementById("genre").value;
+
+    const list = movies[genre];
+    const movie = list[Math.floor(Math.random() * list.length)];
+
+    document.getElementById("emoji").textContent = movie.emoji;
+    document.getElementById("name").textContent = movie.name;
+    document.getElementById("category").textContent =
+        "Genre: " + genre;
+    document.getElementById("rating").textContent =
+        "⭐ Rating: " + movie.rating;
+
+    document.getElementById("result").style.display = "block";
+}
+</script>
+
+</body>
+</html>
